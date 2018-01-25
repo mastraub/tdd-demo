@@ -152,7 +152,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BloggingModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BloggingModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BloggingModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BloggingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BloggingModel.Designer.cs" />
+    <Compile Include="Models\BloggingModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BloggingModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BlogginModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,6 +193,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BloggingModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BloggingModel.Context.cs</LastGenOutput>
+      <DependentUpon>BloggingModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BloggingModel.edmx.sql" />
+    <Content Include="Models\BloggingModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BloggingModel.cs</LastGenOutput>
+      <DependentUpon>BloggingModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Models\BlogginModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BlogginModel.Context.cs</LastGenOutput>
