@@ -18,6 +18,7 @@ namespace WebApp1.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public int PostId { get; set; }
+        public string AuthorName { get; set; }
     
         public virtual Post Post { get; set; }
     }

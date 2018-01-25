@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/25/2018 16:02:57
+-- Date Created: 01/25/2018 16:17:28
 -- Generated from EDMX file: P:\repos\tdd-demo\WebApp1\Models\BloggingModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_PostComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CommentSet] DROP CONSTRAINT [FK_PostComment];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CommentSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CommentSet];
+GO
+IF OBJECT_ID(N'[dbo].[PostSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PostSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,7 +40,8 @@ GO
 CREATE TABLE [dbo].[PostSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
-    [Content] nvarchar(max)  NOT NULL
+    [Content] nvarchar(max)  NOT NULL,
+    [AuthorName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -40,7 +50,8 @@ CREATE TABLE [dbo].[CommentSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [Content] nvarchar(max)  NOT NULL,
-    [PostId] int  NOT NULL
+    [PostId] int  NOT NULL,
+    [AuthorName] nvarchar(max)  NOT NULL
 );
 GO
 
