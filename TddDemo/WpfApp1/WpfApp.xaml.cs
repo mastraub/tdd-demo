@@ -3,9 +3,9 @@
 namespace WpfApp1
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for WpfApp.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class WpfApp : Application
     {
     }
 }
