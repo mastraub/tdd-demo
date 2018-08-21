@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 
 namespace WpfApp1Tests
@@ -35,8 +36,8 @@ namespace WpfApp1Tests
         [TestMethod]
         public void ButtonClick_Click_TextBoxNumberFrom0to1()
         {
-            var button = _window.Get<Button>("Button");
-            button.Click();
+            _window.Get<Button>(SearchCriteria.ByText("Button"))
+                .Click();
             _window.Get<TextBox>("TextBox")
                 .Text.Should()
                 .Be("1");
