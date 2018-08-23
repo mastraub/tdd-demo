@@ -9,6 +9,8 @@ namespace Models
     /// </summary>
     public class MyDbContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+
         public MyDbContext()
         {
         }
@@ -27,6 +29,14 @@ namespace Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .Property(x => x.Name)
+                .IsRequired()
+                ;
+            modelBuilder.Entity<User>()
+                .Property(x => x.Email)
+                .IsRequired()
+                ;
         }
     }
 }
