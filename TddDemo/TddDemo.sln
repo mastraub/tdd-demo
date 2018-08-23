@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1Tests", "WpfApp1Tests\WpfApp1Tests.csproj", "{C6AECAEF-E7FE-48B2-876A-C2EE093A56F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{F75440A0-2555-4356-9FAD-0B70C2E508A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starter", "Starter\Starter.csproj", "{5C9194E9-3256-41B7-9B83-729C028F4E67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C6AECAEF-E7FE-48B2-876A-C2EE093A56F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6AECAEF-E7FE-48B2-876A-C2EE093A56F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6AECAEF-E7FE-48B2-876A-C2EE093A56F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75440A0-2555-4356-9FAD-0B70C2E508A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75440A0-2555-4356-9FAD-0B70C2E508A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75440A0-2555-4356-9FAD-0B70C2E508A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75440A0-2555-4356-9FAD-0B70C2E508A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9194E9-3256-41B7-9B83-729C028F4E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9194E9-3256-41B7-9B83-729C028F4E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9194E9-3256-41B7-9B83-729C028F4E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9194E9-3256-41B7-9B83-729C028F4E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
