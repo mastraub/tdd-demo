@@ -7,6 +7,7 @@ namespace Models
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            
             builder.Property(x => x.Name)
                 .IsRequired()
                 ;
