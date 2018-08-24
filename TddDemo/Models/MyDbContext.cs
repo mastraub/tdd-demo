@@ -29,14 +29,7 @@ namespace Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .Property(x => x.Name)
-                .IsRequired()
-                ;
-            modelBuilder.Entity<User>()
-                .Property(x => x.Email)
-                .IsRequired()
-                ;
+            modelBuilder.ApplyConfiguration(new UserEntityConfig());
         }
     }
 }

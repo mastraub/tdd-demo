@@ -9,7 +9,7 @@ using Models;
 namespace Models.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180823125451_AddUser")]
+    [Migration("20180823145417_AddUser")]
     partial class AddUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,8 @@ namespace Models.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
