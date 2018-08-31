@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{A67020A8-630C-4C93-99F3-DCA6925B75A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1Tests", "WpfApp1Tests\WpfApp1Tests.csproj", "{C6AECAEF-E7FE-48B2-876A-C2EE093A56F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A67020A8-630C-4C93-99F3-DCA6925B75A0} = {A67020A8-630C-4C93-99F3-DCA6925B75A0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{F75440A0-2555-4356-9FAD-0B70C2E508A8}"
 EndProject
