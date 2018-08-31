@@ -6,19 +6,15 @@ using Models;
 namespace ModelsTests
 {
     [TestClass]
-    public class UnitTest1 : DbIntegrationTestBase
+    public class UnitTest1 : ADbIntegrationTest
     {
-        private DatabaseCleaner _databaseCleaner;
-
         private UserCrud _sut;
 
         [TestInitialize]
         public void Initialize()
         {
-            var _dbContext = new MyDbContext();
-            _databaseCleaner = new DatabaseCleaner();
-            _databaseCleaner.CleanAll();
-            _sut = new UserCrud(_dbContext);
+            var dbContext = new MyDbContext();
+            _sut = new UserCrud(dbContext);
         }
 
         [TestMethod]
@@ -34,11 +30,13 @@ namespace ModelsTests
         {
             var user1 = new User
             {
-                Name = "Name1"
+                Name = "Name1",
+                Email = "a@b.c1"
             };
             var user2 = new User
             {
-                Name = "Name2"
+                Name = "Name2",
+                Email = "a@b.c2"
             };
 
             _sut.Create(user1);
@@ -49,5 +47,6 @@ namespace ModelsTests
                 .Should()
                 .BeEquivalentTo("Name1", "Name2");
         }
+
     }
 }

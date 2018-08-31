@@ -11,6 +11,9 @@ namespace Models
     {
         public DbSet<User> Users { get; set; }
 
+        private const string ConnectionString =
+            "Data Source=ENTWICKLUNG8\\SQLEXPRESS;Initial Catalog=tdd-demo;Integrated Security=True;"; // TODO from config file
+
         public MyDbContext()
         {
         }
@@ -23,8 +26,7 @@ namespace Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(
-                    "Data Source=ENTWICKLUNG8\\SQLEXPRESS;Initial Catalog=tdd-demo;Integrated Security=True;");
+                optionsBuilder.UseSqlServer(ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

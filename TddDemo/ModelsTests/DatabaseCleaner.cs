@@ -1,29 +1,34 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 
 namespace ModelsTests
 {
     internal class DatabaseCleaner
     {
-        public void CleanAll()
+        public DatabaseCleaner(string connectionString) =>
+            ConnectionString = connectionString;
+
+        public string ConnectionString { get; }
+
+        public void CleanAllButMigrations()
         {
-            // _dbContext.Database.ExecuteSqlCommand("TRUNCATE TABLE [TableName]");
-            // EF CORE DOESNT HAVE ExecuteSqlCommand
-
-            var connectionString = "Data Source=ENTWICKLUNG8\\SQLEXPRESS;Initial Catalog=tdd-demo;Integrated Security=True;";
-
-            var queryString = "TRUNCATE TABLE [TableName]";
-
             // truncate all but Migrations-List
-
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                var tables = connection.GetSchema("Tables");
+                var tableNameIndex = 2;
+                var tables = connection.GetSchema("Tables")
+                        .Rows
+                        .Cast<DataRow>()
+                        .Select(x => (string) x[tableNameIndex])
+                        .Where(x => !x.StartsWith("__")) // reject eg. MigrationsTable
+                    ;
 
-
-                //var command = new SqlCommand(queryString, connection);
-                //command.Connection.Open();
-                //command.ExecuteNonQuery(); // https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand.executenonquery?redirectedfrom=MSDN&view=netframework-4.7.2#System_Data_SqlClient_SqlCommand_ExecuteNonQuery
+                // truncation
+                foreach (var table in tables)
+                    new SqlCommand($"TRUNCATE TABLE {table}", connection)
+                        .ExecuteNonQuery();
             }
         }
     }
