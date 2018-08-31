@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestStack.White;
@@ -17,12 +19,21 @@ namespace WpfApp1Tests
         [TestInitialize]
         public void Initialize()
         {
-            //var directoryName = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath);
-            var directoryName =
-                @"C:\Users\m.straub\source\repos\tdd-demo\TddDemo\WpfApp1\bin\Debug";
-            var location = Path.Combine(directoryName, @"WpfApp1.exe");
-            var application = Application.Launch(location);
+            var autExe = AutExecutablePath("WpfApp1");
+            var application = Application.Launch(autExe);
             _window = application.GetWindow("MainWindow", InitializeOption.NoCache);
+        }
+
+        // Aut = App under test
+        public string AutExecutablePath(string projectName)
+        {
+            var codebase = Assembly.GetExecutingAssembly().CodeBase;
+            var executionPath = new Uri(codebase).AbsolutePath;
+            var stepOut = "../../../../"; // see next line: stepIn
+            var stepIn = $"{projectName}/bin/Debug/{projectName}.exe";
+            var navigate = Path.Combine(executionPath, stepOut, stepIn);
+            var appPath = Path.GetFullPath(navigate);
+            return appPath;
         }
 
         [TestMethod]
