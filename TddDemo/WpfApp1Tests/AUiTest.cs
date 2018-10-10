@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestStack.White;
 using TestStack.White.UIItems.WindowItems;
 
@@ -17,34 +16,36 @@ namespace WpfApp1Tests
 
         protected Application Application { get; private set; }
 
-        [TestInitialize]
-        public virtual void AUiTestInitialize()
+        protected abstract string WindowUnderTest { get; }
+
+        protected void WithApp(Action<Window> action)
         {
-            Application = InitApp(AutName);
+            InitializeApp();
+            action.Invoke(Window);
+            DisposeApp();
         }
 
-        [TestCleanup]
-        public virtual void AUiTestCleanup()
+        private void InitializeApp()
         {
+            var executable = AutExecutablePath(AutName);
+            Application = Application.Launch(executable);
+            Window = Application.GetWindow(WindowUnderTest);
+        }
+
+        private void DisposeApp()
+        {
+            Window = null;
             Application.Close();
             Application.Dispose();
         }
 
-        protected void SetWindow(string name) =>
-            Window = Application.GetWindow(name);
-
-        protected Application InitApp(string name)
-        {
-            var executable = AutExecutablePath(name);
-            return Application.Launch(executable);
-        }
 
         public static string AutExecutablePath(string projectName)
         {
             var codebase = Assembly.GetExecutingAssembly()
                 .CodeBase;
             var executionPath = new Uri(codebase).AbsolutePath;
-            var stepOut = "../../../../"; // see next line: stepIn
+            var stepOut = "../../../../"; // navigate to the solution root folder
             var stepIn = $"{projectName}/bin/Debug/{projectName}.exe";
             var navigate = Path.Combine(executionPath, stepOut, stepIn);
             var appPath = Path.GetFullPath(navigate);
