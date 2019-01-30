@@ -12,7 +12,7 @@ namespace WpfApp1Tests
 
         public const string AutName = "WpfApp1";
 
-        protected Window Window;
+        private Window _window;
 
         protected Application Application { get; private set; }
 
@@ -27,20 +27,27 @@ namespace WpfApp1Tests
         protected void WithApp(Action<Window> action)
         {
             InitializeApp();
-            action.Invoke(Window);
-            DisposeApp();
+            try
+            {
+                action.Invoke(_window);
+            }
+            finally
+            {
+                // clean up on exceptions
+                DisposeApp();
+            }
         }
 
         private void InitializeApp()
         {
             var executable = AutExecutablePath(AutName);
             Application = Application.Launch(executable);
-            Window = Application.GetWindow(WindowUnderTest);
+            _window = Application.GetWindow(WindowUnderTest);
         }
 
         private void DisposeApp()
         {
-            Window = null;
+            _window = null;
             Application.Close();
             Application.Dispose();
         }
