@@ -18,6 +18,12 @@ namespace WpfApp1Tests
 
         protected abstract string WindowUnderTest { get; }
 
+        /// <summary>
+        /// I don't put #InitializeApp into [TestInitialize]
+        /// because then I couldn't set up before initialization
+        /// in my derived test class.
+        /// </summary>
+        /// <param name="action"></param>
         protected void WithApp(Action<Window> action)
         {
             InitializeApp();
